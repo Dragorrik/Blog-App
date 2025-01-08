@@ -1,3 +1,4 @@
+import 'package:blog_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -24,13 +25,26 @@ class LoginController extends GetxController {
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
-      Get.snackbar('Success', 'Login Successful',
-          snackPosition: SnackPosition.BOTTOM);
-      Get.offAllNamed('/home'); // Navigate to home after login
+
+      if (emailController.text == 'aarik@gmail.com') {
+        Get.snackbar('Success', 'Login Successful,Admin',
+            backgroundColor: Colors.black45,
+            snackPosition: SnackPosition.BOTTOM);
+        Get.offAllNamed(Routes.ADMIN_HOME);
+      } else {
+        Get.snackbar('Success', 'Login Successful,User',
+            backgroundColor: Colors.blueGrey,
+            snackPosition: SnackPosition.BOTTOM);
+        Get.offAllNamed(Routes.USER_HOME);
+      }
     } catch (e) {
       Get.snackbar('Error', e.toString(), snackPosition: SnackPosition.BOTTOM);
     } finally {
       isLoading.value = false;
     }
+  }
+
+  Future<void> logout() async {
+    await _auth.signOut();
   }
 }

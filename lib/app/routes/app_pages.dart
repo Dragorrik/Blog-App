@@ -6,6 +6,8 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/register/bindings/register_binding.dart';
 import '../modules/register/views/register_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 import '../modules/user_home/bindings/user_home_binding.dart';
 import '../modules/user_home/views/user_home_view.dart';
 
@@ -13,9 +15,6 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-
-  static const LOGIN = Routes.LOGIN;
-  static const REGISTER = Routes.REGISTER;
 
   static final routes = [
     GetPage(
@@ -30,13 +29,18 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADMIN_HOME,
-      page: () => const AdminHomeView(),
+      page: () => AdminHomeView(),
       binding: AdminHomeBinding(),
     ),
     GetPage(
       name: _Paths.USER_HOME,
-      page: () => const UserHomeView(),
+      page: () => UserHomeView(),
       binding: UserHomeBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
